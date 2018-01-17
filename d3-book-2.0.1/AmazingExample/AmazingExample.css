@@ -1,0 +1,14 @@
+#intro {
+    color: white;
+    background-color: red;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+#mid {
+    color: blue;
+}
+
+#num_list {
+    background-color: yellow;
+}

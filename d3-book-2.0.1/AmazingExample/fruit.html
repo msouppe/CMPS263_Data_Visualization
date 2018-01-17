@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Fruit.html</title>
+        <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            var fruits = [
+                {
+                    kind: "grape", 
+                    color: "red", 
+                    quantity: 12, 
+                    tasty: true
+                },
+                {
+                    kind: "kiwi", 
+                    color: "brown", 
+                    quantity: 98, 
+                    tasty: true
+                },
+                {
+                    kind: "banana", 
+                    color: "yellow", 
+                    quantity: 0, 
+                    tasty: true
+                }
+            ];      
+            
+            
+            var node = document.createElement("div");
+            var grape_con = fruits[0].quantity + " " + fruits[0].kind;
+            var kiwi_con = fruits[1].quantity + " " + fruits[1].kind;
+            var banana_con = fruits[2].quantity + " " + fruits[2].kind; 
+            
+            var grape = document.createTextNode(fruits[0].quantity + " " + fruits[0].kind);
+            var kiwi = document.createTextNode(fruits[1].quantity + " " + fruits[1].kind);
+            var banana = document.createTextNode(fruits[2].quantity + " " + fruits[2].kind);
+            
+            node.appendChild(grape);
+            node.appendChild(kiwi);
+            node.appendChild(banana);
+            document.getElementById("fruits_display").appendChild(node);
+            
+        </script>
+
+    </body>
+    
+    <div style="background-color: lightgray" id="fruits_display">
+        yo
+    </div>
+    
+</html>
