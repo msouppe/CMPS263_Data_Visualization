@@ -30,26 +30,36 @@
             ];      
             
             
-            var node = document.createElement("div");
-            var grape_con = fruits[0].quantity + " " + fruits[0].kind;
-            var kiwi_con = fruits[1].quantity + " " + fruits[1].kind;
-            var banana_con = fruits[2].quantity + " " + fruits[2].kind; 
-            
-            var grape = document.createTextNode(fruits[0].quantity + " " + fruits[0].kind);
-            var kiwi = document.createTextNode(fruits[1].quantity + " " + fruits[1].kind);
-            var banana = document.createTextNode(fruits[2].quantity + " " + fruits[2].kind);
-            
-            node.appendChild(grape);
-            node.appendChild(kiwi);
-            node.appendChild(banana);
-            document.getElementById("fruits_display").appendChild(node);
-            
+            window.onload = function data() {
+                var node = document.getElementById("fruits_display");
+                var br = document.createElement('br');
+                
+                var grape = fruits[0].quantity + " " + fruits[0].kind;
+                var kiwi = fruits[1].quantity + " " + fruits[1].kind;
+                var banana = fruits[2].quantity + " " + fruits[2].kind; 
+
+                var grape_style = fruits[0].color;
+                var kiwi_style = fruits[1].color;
+                var banana_style = fruits[2].color;
+                    
+//                var grape = document.createTextNode(fruits[0].quantity + " " + fruits[0].kind).style.color;
+//                var kiwi = document.createTextNode(fruits[1].quantity + " " + fruits[1].kind);
+//                var banana = document.createTextNode(fruits[2].quantity + " " + fruits[2].kind);
+
+                node.innerHTML += grape;
+                node.appendChild(br);
+                node.innerHTML += kiwi;
+                node.appendChild(br);
+                node.innerHTML += banana;                
+                node.appendChild(br);
+                
+            };
+
+        
         </script>
 
     </body>
     
-    <div style="background-color: lightgray" id="fruits_display">
-        yo
-    </div>
+    <div style="background-color: lightgray" id="fruits_display"></div>
     
 </html>
