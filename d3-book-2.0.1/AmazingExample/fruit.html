@@ -29,37 +29,16 @@
                 }
             ];      
             
-            
             window.onload = function data() {
                 var node = document.getElementById("fruits_display");
-                var br = document.createElement('br');
-                
-                var grape = fruits[0].quantity + " " + fruits[0].kind;
-                var kiwi = fruits[1].quantity + " " + fruits[1].kind;
-                var banana = fruits[2].quantity + " " + fruits[2].kind; 
 
-                var grape_style = fruits[0].color;
-                var kiwi_style = fruits[1].color;
-                var banana_style = fruits[2].color;
-                    
-//                var grape = document.createTextNode(fruits[0].quantity + " " + fruits[0].kind).style.color;
-//                var kiwi = document.createTextNode(fruits[1].quantity + " " + fruits[1].kind);
-//                var banana = document.createTextNode(fruits[2].quantity + " " + fruits[2].kind);
-
-                node.innerHTML += grape;
-                node.appendChild(br);
-                node.innerHTML += kiwi;
-                node.appendChild(br);
-                node.innerHTML += banana;                
-                node.appendChild(br);
-                
+                for(var i= 0; i < fruits.length; i++) {
+                  node.innerHTML += "<span style='color:" + fruits[i].color + "'>" + fruits[i].quantity + " " + fruits[i].kind + "</span></br>";  
+                }                                            
             };
-
-        
         </script>
-
+        
+        <div style="background-color: lightgray" id="fruits_display"></div>
+        
     </body>
-    
-    <div style="background-color: lightgray" id="fruits_display"></div>
-    
 </html>
