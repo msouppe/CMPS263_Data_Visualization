@@ -7,7 +7,13 @@ p{
 }
 
 //Add .axis path and .axis line commans as described in the book (1 point)
+.axis path{
+    
+}
 
+.axis line{
+    
+}
 
 .axis text{
     font: Times;
