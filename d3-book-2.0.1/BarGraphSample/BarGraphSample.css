@@ -7,12 +7,10 @@ p{
 }
 
 //Add .axis path and .axis line commans as described in the book (1 point)
-.axis path{
-    
-}
-
+.axis path,
 .axis line{
-    
+    stroke: teal;
+    shape-rendering: crispEdges;
 }
 
 .axis text{

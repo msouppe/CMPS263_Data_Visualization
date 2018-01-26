@@ -14,7 +14,8 @@ var margin = {top: 10, right: 40, bottom: 150, left: 50},
     
 
 // Define SVG. "g" means group SVG elements together.
-// Confused about SVG still, see Chapter 3. 
+/* SVG - Scalable Vector Graphics */
+
 // Add comments here in your own words to explain this segment of code (.25 point)
 /* Drawing the visuals, in this case the bars for the bar graph */
 var svg = d3.select("body").append("svg")
@@ -36,9 +37,9 @@ var xScale = d3.scaleBand().rangeRound([0, width]).padding(0.1);
 var yScale = d3.scaleLinear().range([height, 0]);
 
 // Define X and Y AXIS
-// Define tick marks on the y-axis as shown on the output with an interval of 5 and $ sign(1 point)
+// Define tick marks on the y-axis as shown on the output with an interval of 5 and $ sign (1 point)
 var xAxis = d3.axisBottom(xScale);
-var yAxis = d3.axisLeft(yScale).ticks(5).tickFormat( function(d) { return "$" + d });
+var yAxis = d3.axisLeft(yScale).ticks(5).tickFormat(function (d) { return "$" + d; });
 
 /* --------------------------------------------------------------------
 To understand how to import data. See D3 API refrence on CSV. Understand
@@ -48,8 +49,8 @@ the difference between .csv, .tsv and .json files. To import a .tsv or
 
 // data.csv contains the country name(key) and its GDP(value)
 // 1 point for explaining the code for reading the data
-/* Iterates through the data  */
-d3.csv("GDP2016TrillionUSDollars.csv",function(error, data){
+/* Obtains data from csv file with an error option if file doesn't load properly */
+d3.csv("GDP2016TrillionUSDollars.csv", function (error, data) {
     data.forEach(function(d) {
         d.key = d.key;
         d.value = +d.value;
@@ -57,8 +58,8 @@ d3.csv("GDP2016TrillionUSDollars.csv",function(error, data){
 
     // Return X and Y SCALES (domain). See Chapter 7:Scales (Scott M.) 
     // .25 point for explaining the code below
-    /*  */
-    xScale.domain(data.map(function(d){ return d.key; }));
+    /* Creates domains for the xaxis and yaxis */
+    xScale.domain(data.map(function (d){ return d.key; }));
     yScale.domain([0,d3.max(data, function(d) {return d.value; })]);
     
     // Creating rectangular bars to represent the data. 
@@ -66,20 +67,31 @@ d3.csv("GDP2016TrillionUSDollars.csv",function(error, data){
     svg.selectAll("rect")
                 .data(data)
                 .enter()
+                // adding a rectangle for each data point
                 .append("rect")
-                .transition().duration(1000)
+                // creates the animations for the each rectangle
+                .transition()
+                    .duration(1000)
+                    // create increasing to decreasing shade of blue as shown on the output (2 points)
+                    .style("fill", function(d) {
+                        return "rgb(0,0," + Math.round( 255 - d.value * 6) + ")";
+                    })
+                // 
                 .delay( function(d,i) {return i * 200;})
+                // adding the space on the x-axis for the labels
                 .attr("x", function(d) {
                     return xScale(d.key);
                 })
+                // adding the space on the y-axis for the labels
                 .attr("y", function(d) {
                     return yScale(d.value);
                 })
+                // creating the tick marks for the rectangles for the x-axis
                 .attr("width", xScale.bandwidth())
+                // creating the tick marks for the rectangles for the y-axis
                 .attr("height", function(d) {
                     return height - yScale(d.value);
-                });
-                // create increasing to decreasing shade of blue as shown on the output (2 points)
+                })      
     
     // Label the data values(d.value) (3 points)
     svg.selectAll("text")
@@ -126,5 +138,5 @@ d3.csv("GDP2016TrillionUSDollars.csv",function(error, data){
         .attr("dy", "-3em")
         .attr("fill", "black")
         .attr("font-family", "times")
-        .style("text-anchor", "middle")
+        .style("text-anchor", "middle");
 });
