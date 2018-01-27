@@ -32,7 +32,7 @@ difference between Ordinal vs Linear scale.
 
 // Define X and Y SCALE.
 // Add comments in your own words to explain the code below (.25 point)
-/* Setting up the range for the x and y scales */
+/* Setting up the ranges for the x and y scales */
 var xScale = d3.scaleBand().rangeRound([0, width]).padding(0.1);
 var yScale = d3.scaleLinear().range([height, 0]);
 
@@ -58,7 +58,7 @@ d3.csv("GDP2016TrillionUSDollars.csv", function (error, data) {
 
     // Return X and Y SCALES (domain). See Chapter 7:Scales (Scott M.) 
     // .25 point for explaining the code below
-    /* Creates domains for the xaxis and yaxis */
+    /* Creates domains for the x-axis and y-axis */
     xScale.domain(data.map(function (d){ return d.key; }));
     yScale.domain([0,d3.max(data, function(d) {return d.value; })]);
     
@@ -109,6 +109,7 @@ d3.csv("GDP2016TrillionUSDollars.csv", function (error, data) {
         .attr("y", function(d) {
             return yScale(d.value) + 12;
         })
+        /* Styling the data values on the actual bars on the bar chart */
         .attr("font-family", "sans-serif")
         .attr("font-size", "13px")
         .attr("font-weight", "bold")
