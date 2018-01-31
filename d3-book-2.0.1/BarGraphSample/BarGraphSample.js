@@ -32,6 +32,7 @@ difference between Ordinal vs Linear scale.
 
 // Define X and Y SCALE.
 // Add comments in your own words to explain the code below (.25 point)
+
 /* Setting up the ranges for the x and y scales */
 var xScale = d3.scaleBand().rangeRound([0, width]).padding(0.1);
 var yScale = d3.scaleLinear().range([height, 0]);
