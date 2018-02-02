@@ -1,0 +1,40 @@
+#title {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+#summary {
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+#sources {
+    font-family: 'Lato', sans-serif;
+}
+
+.credits {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+
+.sources_list {
+    list-style-type: none; 
+    padding: 0px !important;
+}
+
+.sources_header {
+    font-weight: bold;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+}
+
+#rect {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    width: 500px;
+    height: 300px;
+    background-color: white;
+}
