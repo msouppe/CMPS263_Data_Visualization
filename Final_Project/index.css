@@ -20,6 +20,7 @@
 .sources_list {
     list-style-type: none; 
     padding: 0px !important;
+    font-size: 1.1em;
 }
 
 .sources_header {
