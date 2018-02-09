@@ -10,7 +10,7 @@ var svg = d3.select("body").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-/*  */
+/* Returns a new parser for date */
 var parseTime = d3.timeParse("%Y");
 
 /* Setting up the ranges for the x and y scales and color scheme for the lines */
@@ -62,6 +62,7 @@ d3.csv("data.csv", function (d) {
     
     z.domain(countries.map(function(c) { return c.id; }));
     
+    /* Creating xAxis and formatting */
     svg.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
@@ -72,6 +73,7 @@ d3.csv("data.csv", function (d) {
         .attr("fill", "#000")
         .text("Year");
 
+    /* Creating yAxis and formatting */
     svg.append("g")
         .attr("class", "axis axis--y")
         .call(yAxis)
@@ -88,6 +90,7 @@ d3.csv("data.csv", function (d) {
         .enter().append("g")
         .attr("class", "country");
     
+    /* Drawing lines and setting line attributes */
     var path = country.append("path")
         .attr("class", "line")
         .attr("fill", "none")
