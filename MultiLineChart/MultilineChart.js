@@ -14,7 +14,7 @@ var svg = d3.select("body").append("svg")
 var parseTime = d3.timeParse("%Y%m%d");
 var years;
 
-var x = d3.scaleTime().range([0, width]);
+var x = d3.scaleBand().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
 var z = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -23,12 +23,13 @@ var line = d3.line()
     .x(function(d) { return x(d.Country); })
     .y(function(d) { return y(d.EPC); });
 
-
+/* Create the scales for theh x and y axis */
 var xScale = d3.scaleTime().range([0, width]);
 var yScale = d3.scaleLinear().range([height, 0]);
 
+
 var xAxis = d3.axisBottom(xScale);
-var yAxis = d3.axisLeft(yScale).ticks(7);
+var yAxis = d3.axisLeft(yScale);
 
 // data.csv contains the country name(country) and its year(2000-2001)
 /* Obtains data from csv file with an error option if file doesn't load properly */
@@ -46,14 +47,16 @@ d3.csv("EPC_2000_2010.csv", function(error, data) {
     });
     
     
+    console.log("dta")
     console.log(dta);
     
-    
     years = data.columns.slice(1);
+    console.log("data.columns.slice(1)");
     console.log(years);
 
     /* X-axis years */
     xScale.domain(d3.extent(years));
+    console.log("xScale.domain()");
     console.log(d3.extent(years));
     
     /* Y-axis EPC values for every year for every country */
@@ -67,6 +70,7 @@ d3.csv("EPC_2000_2010.csv", function(error, data) {
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis)
+        .append("text")
     
     svg.append("g")
         .attr("class", "axis axis--y")
@@ -77,7 +81,5 @@ d3.csv("EPC_2000_2010.csv", function(error, data) {
         .attr("dy", "0.71em")
         .attr("fill", "#000")
         .text("Million BTUs Per Person");
-    
-
     
 });
