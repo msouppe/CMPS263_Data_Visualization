@@ -24,9 +24,11 @@ var line = d3.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.epc); });
 
-/* Define X and Y AXIS */
-var xAxis = d3.axisBottom(x);
-var yAxis = d3.axisLeft(y);
+/* Define X and Y AXIS 
+    Source for grid lines (tick marks):
+    https://bl.ocks.org/mbostock/c69f5960c6b1a95b6f78 */
+var xAxis = d3.axisBottom(x).tickSize(-height, 0);
+var yAxis = d3.axisLeft(y).tickSize(-width, 0);
 
 /*  Obtaining data from csv file
     Source: 
@@ -69,7 +71,7 @@ d3.csv("data.csv", function (d) {
         .call(xAxis)
         .append("text")
         .attr("x", 700 - margin.right - margin.top)
-        .attr("dy", "0.71em")
+        .attr("dy", "1.2em")
         .attr("fill", "#000")
         .text("Year");
 
@@ -81,10 +83,10 @@ d3.csv("data.csv", function (d) {
         .attr("transform", "rotate(-90)")
         .attr("x", -100)
         .attr("y", -45)
-        .attr("dy", "0.71em")
+        .attr("dy", "1.2em")
         .attr("fill", "#000")
         .text("Millions of BTUs per person")
-
+    
     var country = svg.selectAll(".country")
         .data(countries)
         .enter().append("g")

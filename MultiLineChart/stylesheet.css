@@ -1,1 +1,11 @@
-/* No styling for this assignemnt, everything styled dynamicalling in js file */
+.axis--y .tick line {
+  stroke-opacity: .15;
+}
+
+.axis--x .tick line {
+  stroke-opacity: .15;
+}
+
+.axis path {
+    stroke: none;
+}
