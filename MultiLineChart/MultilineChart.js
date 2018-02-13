@@ -14,9 +14,9 @@ var svg = d3.select("body").append("svg")
 var parseTime = d3.timeParse("%Y");
 
 /* Setting up the ranges for the x and y scales and color scheme for the lines */
-var x = d3.scaleTime().range([0, width]),
-    y = d3.scaleLinear().range([height, 0]),
-    z = d3.scaleOrdinal(d3.schemeCategory10);
+var x = d3.scaleTime().range([0, width]),       /*  */
+    y = d3.scaleLinear().range([height, 0]),    /*  */
+    z = d3.scaleOrdinal(d3.schemeCategory10);   /* Creates the different colors for each line */
 
 /* Creates smooth lines */
 var line = d3.line()
@@ -68,10 +68,11 @@ d3.csv("data.csv", function (d) {
     svg.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
+        .attr("dy", "3em")
         .call(xAxis)
         .append("text")
         .attr("x", 700 - margin.right - margin.top)
-        .attr("dy", "1.2em")
+        .attr("dy", "1em")
         .attr("fill", "#000")
         .text("Year");
 
@@ -87,6 +88,7 @@ d3.csv("data.csv", function (d) {
         .attr("fill", "#000")
         .text("Millions of BTUs per person")
     
+    /* Lines for every country */
     var country = svg.selectAll(".country")
         .data(countries)
         .enter().append("g")
