@@ -96,7 +96,6 @@ d3.csv("data.csv", function (d) {
     var path = country.append("path")
         .attr("class", "line")
         .attr("fill", "none")
-        .attr("stroke", "steelblue")
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 1.5)
