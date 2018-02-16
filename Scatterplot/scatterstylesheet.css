@@ -14,3 +14,10 @@ body {
 }
 
 /*Add Tooltip Type here*/
+.tooltip {
+    position: absolute;
+    width: 200px;
+    height: 28px;
+    pointer-events: none;
+/*    background-color: white;*/
+}
