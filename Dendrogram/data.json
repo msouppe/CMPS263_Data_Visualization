@@ -7,27 +7,17 @@
     {
      "name": "applied mathemathics",
      "children": [
-      {"name": "AgglomerativeCluster", "size": 3938},
-      {"name": "CommunityStructure", "size": 3812},
-      {"name": "HierarchicalCluster", "size": 6714},
-      {"name": "MergeEdge", "size": 743}
+      {"name": "am_1", "size": 3938},
+      {"name": "am_2", "size": 3812},
+      {"name": "am_3", "size": 6714},
+      {"name": "am_4", "size": 743}
      ]
     },
     {
-     "name": "pure mathematics",
-     "children": [
-      {"name": "BetweennessCentrality", "size": 3534},
-      {"name": "LinkDistance", "size": 5731},
-      {"name": "MaxFlowMinCut", "size": 7840},
-      {"name": "ShortestPaths", "size": 5914},
-      {"name": "SpanningTree", "size": 3416}
-     ]
+     "name": "pure mathematics"
     },
     {
-     "name": "statistics",
-     "children": [
-      {"name": "AspectRatioBanker", "size": 7074}
-     ]
+     "name": "statistics"
     }
    ]
   },
@@ -37,139 +27,55 @@
     {
      "name": "bio-informatics",
      "children": [
-      {"name": "ArrayInterpolator", "size": 1983},
-      {"name": "ColorInterpolator", "size": 2047},
-      {"name": "DateInterpolator", "size": 1375}
+      {"name": "bio_1", "size": 1983},
+      {"name": "bio_2", "size": 2047},
+      {"name": "bio_3", "size": 1375}
      ]
     },
-    {"name": "ISchedulable", "size": 1041},
-    {"name": "Parallel", "size": 5176},
-    {"name": "Pause", "size": 449},
-    {"name": "Scheduler", "size": 5593},
-    {"name": "Sequence", "size": 5534},
-    {"name": "Transition", "size": 9201},
-    {"name": "Transitioner", "size": 19975},
-    {"name": "TransitionEvent", "size": 1116},
-    {"name": "Tween", "size": 6006}
+    {"name": "genome", "size": 1041},
+    {"name": "bio-locomotion", "size": 5176}
    ]
   },
   {
-   "name": "chemistry",
-   "children": [
-    {
-     "name": "converters",
-     "children": [
-      {"name": "Converters", "size": 721},
-      {"name": "DelimitedTextConverter", "size": 4294},
-      {"name": "GraphMLConverter", "size": 9800},
-      {"name": "IDataConverter", "size": 1314},
-      {"name": "JSONConverter", "size": 2220}
-     ]
-    },
-    {"name": "DataField", "size": 1759},
-    {"name": "DataSchema", "size": 2165},
-    {"name": "DataSet", "size": 586},
-    {"name": "DataSource", "size": 3331},
-    {"name": "DataTable", "size": 772},
-    {"name": "DataUtil", "size": 3322}
-   ]
+   "name": "chemistry"
   },
   {
    "name": "english",
    "children": [
-    {"name": "DirtySprite", "size": 8833},
-    {"name": "LineSprite", "size": 1732},
-    {"name": "RectSprite", "size": 3623},
-    {"name": "TextSprite", "size": 10066}
+    {"name": "e_1", "size": 8833},
+    {"name": "e_2", "size": 1732},
+    {"name": "e_3", "size": 3623},
+    {"name": "e_4", "size": 10066}
    ]
   },
   {
    "name": "computer science",
    "children": [
-    {"name": "FlareVis", "size": 4116}
+    {"name": "cs_1", "size": 4116}
    ]
   },
   {
    "name": "physics",
    "children": [
-    {"name": "DragForce", "size": 1082},
-    {"name": "GravityForce", "size": 1336},
-    {"name": "IForce", "size": 319},
-    {"name": "NBodyForce", "size": 10498},
-    {"name": "Particle", "size": 2822},
-    {"name": "Simulation", "size": 9983},
-    {"name": "Spring", "size": 2213},
-    {"name": "SpringForce", "size": 1681}
+    {"name": "p_1", "size": 1082},
+    {"name": "p_2", "size": 1336}
    ]
   },
   {
    "name": "history",
    "children": [
-    {"name": "AggregateExpression", "size": 1616},
-    {"name": "And", "size": 1027},
-    {"name": "Arithmetic", "size": 3891},
-    {"name": "Average", "size": 891},
-    {"name": "BinaryExpression", "size": 2893},
-    {"name": "Comparison", "size": 5103},
-    {"name": "CompositeExpression", "size": 3677},
-    {"name": "Count", "size": 781},
-    {"name": "DateUtil", "size": 4141},
-    {"name": "Distinct", "size": 933},
-    {"name": "Expression", "size": 5130},
-    {"name": "ExpressionIterator", "size": 3617},
-    {"name": "Fn", "size": 3240},
-    {"name": "If", "size": 2732},
-    {"name": "IsA", "size": 2039},
-    {"name": "Literal", "size": 1214},
-    {"name": "Match", "size": 3748},
-    {"name": "Maximum", "size": 843},
+    {"name": "h_1", "size": 1616},
+    {"name": "h_2", "size": 1027},
+    {"name": "h_3", "size": 843},
     {
      "name": "methods",
      "children": [
-      {"name": "add", "size": 593},
-      {"name": "and", "size": 330},
-      {"name": "average", "size": 287},
-      {"name": "count", "size": 277},
-      {"name": "distinct", "size": 292},
-      {"name": "div", "size": 595},
-      {"name": "eq", "size": 594},
-      {"name": "fn", "size": 460},
-      {"name": "gt", "size": 603},
-      {"name": "gte", "size": 625},
-      {"name": "iff", "size": 748},
-      {"name": "isa", "size": 461},
-      {"name": "lt", "size": 597},
-      {"name": "lte", "size": 619},
-      {"name": "max", "size": 283},
-      {"name": "min", "size": 283},
-      {"name": "mod", "size": 591},
-      {"name": "mul", "size": 603},
-      {"name": "neq", "size": 599},
-      {"name": "not", "size": 386},
-      {"name": "or", "size": 323},
-      {"name": "orderby", "size": 307},
-      {"name": "range", "size": 772},
-      {"name": "select", "size": 296},
-      {"name": "stddev", "size": 363},
-      {"name": "sub", "size": 600},
-      {"name": "sum", "size": 280},
-      {"name": "update", "size": 307},
-      {"name": "variance", "size": 335},
-      {"name": "where", "size": 299},
-      {"name": "xor", "size": 354},
-      {"name": "_", "size": 264}
+      {"name": "m_1", "size": 593},
+      {"name": "m_2", "size": 330},
+      {"name": "m_3", "size": 287},
+      {"name": "m_4", "size": 264}
      ]
-    },
-    {"name": "Minimum", "size": 843},
-    {"name": "Not", "size": 1554},
-    {"name": "Or", "size": 970},
-    {"name": "Query", "size": 13896},
-    {"name": "Range", "size": 1594},
-    {"name": "StringUtil", "size": 4130},
-    {"name": "Sum", "size": 791},
-    {"name": "Variable", "size": 1124},
-    {"name": "Variance", "size": 1876},
-    {"name": "Xor", "size": 1101}
+    }
    ]
   }
  ]

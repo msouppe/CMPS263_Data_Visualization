@@ -1,26 +1,28 @@
 /*  Set the demensions and margins of the diagram */
-var margin = {top: 20, right: 120, bottom: 20, left: 120},
-    width = 960 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+var diameter = 800;
 
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+    width = 1000,
+    height = 800;
+    
 var i = 0,
-    duration = 750,
+    duration = 350,
     root;
 
 /* Declares a tree layout and assigns the size .tree (v4) .layout.tree (v3) */
 var treemap = d3.tree()
-    .size([height, width]);
+    .size([360, diameter / 2 - 80])
+    .separation(function(a, b) { return (a.parent == b.parent ? 1 : 10) / a.depth; });
 
 /*  Append svg object to body of the page
     Append group element to svg
     Moves group element to top left margin
 */
 var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.right + margin.left)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", width )
+    .attr("height", height )
   .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
 /* Get data from json file */
 d3.json("data.json", function(error, subject) {
@@ -58,7 +60,7 @@ d3.json("data.json", function(error, subject) {
 
 /**********************************************************************/
 function update(source) {
-
+    
     /* Assigns the x and y position for the nodes */
     var treeData = treemap(root);
 
@@ -74,60 +76,69 @@ function update(source) {
     /* Update the nodes */
     var node = svg.selectAll('g.node')
       .data(nodes, function(d) {return d.id || (d.id = ++i); });
-    
+
     /* Enter any new nodes at the parent's previous position */
-    var nodeEnter = node.enter().append('g')
-        .attr('class', 'node')
-        .attr("transform", function(d) {
-            return "translate(" + source.y0 + "," + source.x0 + ")";
+    var nodeEnter = node.enter().append("g")
+        .attr("class", "node")
+        .attr("transform", function(d) { 
+            return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; 
         })
-        .on('click', click);
-    
+        .on("click", click);
+
     /* Add circle for the nodes */
-    nodeEnter.append('circle')
-        .attr('class', 'node')
-        .attr('r', 5)
-        .style("fill", function(d) {
-            return d._children ? "lightsteelblue" : "#fff";
-        });
+    nodeEnter.append("circle")
+        .attr("r", 5)
+        .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
     /* Add labels for the nodes */
-    nodeEnter.append('text')
+    nodeEnter.append("text")
+        .attr("x", 10)
         .attr("dy", ".35em")
-        .attr("x", function(d) {
-            return d.children || d._children ? -13 : 13;
+        .attr("text-anchor", "start")
+        .attr("transform", function(d) { 
+            return d.x < 180 ? "translate(0)" : "rotate(180)translate(-" + (d.data.name.length * 8.5)  + ")"; 
         })
-        .attr("text-anchor", function(d) {
-            return d.children || d._children ? "end" : "start";
+        .text(function(d) { 
+            return d.data.name; 
         })
-        .text(function(d) { return d.data.name; });
+        .style("fill-opacity", 10);
 
-    /* Updating the nodes with text */
-    var nodeUpdate = nodeEnter.merge(node);
-    console.log("nodeUpdate: " + nodeUpdate);
-    
     /* Transition to the proper position for the node */
-    nodeUpdate.transition()
+    var nodeUpdate = node.transition()
         .duration(duration)
         .attr("transform", function(d) { 
-            return "translate(" + d.y + "," + d.x + ")";
+            return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; 
+        })
+
+    /* On exit reduce the node circles size to 0 */
+    nodeUpdate.select("circle")
+        .attr("r", 4.5)
+        .style("fill", function(d) { 
+            return d._children ? "lightsteelblue" : "#fff"; 
         });
-    
+
+    /* On exit reduce the opacity of text labels */
+    nodeUpdate.select("text")
+        .style("fill-opacity", 1)
+        .attr("transform", function(d) { 
+            return d.x < 180 ? "translate(0)" : "rotate(180)translate(-" + (d.data.name.length + 50)  + ")"; 
+        });
+
     /* Remove any exiting nodes */
     var nodeExit = node.exit().transition()
         .duration(duration)
-        .attr("transform", function(d) {
-            return "translate(" + source.y + "," + source.x + ")";
+        .attr("transform", function(d) { 
+            return "diagonal(" + source.y + "," + source.x + ")"; 
         })
         .remove();
-    
+
     /* On exit reduce the node circles size to 0 */
-    nodeExit.select('circle')
-        .attr('r', 1e-6);
-        
+    nodeExit.select("circle")
+        .attr("r", 1e-6);
+
     /* On exit reduce the opacity of text labels */
-    nodeExit.select('text')
-        .style('fill-opacity', 1e-6);
+    nodeExit.select("text")
+        .style("fill-opacity", 1e-6);
     
     /**** Drawing paths for hte links from one node to another w/ amination ****/
     
@@ -136,22 +147,25 @@ function update(source) {
         .data(links, function(d) { 
             return d.id; 
         });
-    
+
     /* Enter any new links at the parent's previous position */
     var linkEnter = link.enter().insert('path', "g")
         .attr("class", "link")
         .attr('d', function(d){
-        var o = {x: source.x0, y: source.y0}
-            return diagonal(o, o)
+            var o = {x: source.x0, y: source.y0}
+                return diagonal(o, o)
         });
+
     
     /* Update links */
     var linkUpdate = linkEnter.merge(link);
-    
+
     /* Transition back to the parent element position */
     linkUpdate.transition()
         .duration(duration)
-        .attr('d', function(d){ return diagonal(d, d.parent) });
+        .attr('d', function(d){ 
+            return diagonal(d, d.parent) 
+        });
 
     /* Remove any exiting links */
     var linkExit = link.exit().transition()
@@ -167,20 +181,31 @@ function update(source) {
         d.x0 = d.x;
         d.y0 = d.y;
     });
-
 } // fcn: update  - close bracket 
 
 
 /**********************************************************************/
-/* Creates a curved (diagonal) path from parent to the child nodes */
-function diagonal(s, d) {
-    console.log("s.x: " + s.x + " \td.x: " + d.x);
-    console.log("s.y: " + s.x + " \td.y: " + d.x);
-    path = `M ${s.y} ${s.x}
-            C ${(s.y + d.y) / 2} ${s.x},
-              ${(s.y + d.y) / 2} ${d.x},
-              ${d.y} ${d.x}`
-    // console.log("path: " + path);
+/* Creates calculation for radial projection */
+function project(x,y) {
+    var angle = (x - 90) / 180 * Math.PI, radius = y;
+    console.log("project(x,y): " + x,y);
+    
+    return [radius * Math.cos(angle), radius * Math.sin(angle)];
+}
+
+
+/**********************************************************************/
+/* Creates a circular (diagonal) path from parent to the child nodes */
+function diagonal(s,d) {
+    // console.log("d.x: " + d.x/ 180 * Math.PI);
+    // console.log("d.y: " + d.y/ 180 * Math.PI);
+    
+    var path = "M" + project(s.x, s.y)
+                + "C" + project(s.x, (s.y + d.y) / 2)
+                + " " + project(d.x, (s.y + d.y) / 2)
+                + " " + project(d.x, d.y);
+    console.log("path: " + path);
+    
     return path
 } // fcn: diagonal  - close bracket 
 
