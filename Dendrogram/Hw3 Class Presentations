@@ -1,0 +1,15 @@
+Mariette Souppe
+HW3 Class Presentations
+
+Converted d3 v3 code into d3 v4 code for dendrograms, further coded two examples of dendrograms: linear and radial. Lastly, using similar skeleton for both dendrograms and showing how it is easy to convert from a linear to radial dendrogram with same data. Lastly, creating these examples using my own data. 
+
+
+
+
+
+Project folder on github:
+https://github.com/msouppe/Data_Visualization/blob/master/Dendrogram/
+
+Source files:
+https://bl.ocks.org/mbostock/4339083
+https://bl.ocks.org/mbostock/4739610f6d96aaad2fb1e78a72b385ab

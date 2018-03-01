@@ -1,3 +1,5 @@
+/* Mariette Souppe */
+
 /*  Set the demensions and margins of the diagram */
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 960 - margin.right - margin.left,
@@ -181,6 +183,7 @@ function diagonal(s, d) {
               ${(s.y + d.y) / 2} ${d.x},
               ${d.y} ${d.x}`
     // console.log("path: " + path);
+    
     return path
 } // fcn: diagonal  - close bracket 
 

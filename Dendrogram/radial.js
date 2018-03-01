@@ -1,3 +1,5 @@
+/* Mariette Souppe */
+
 /*  Set the demensions and margins of the diagram */
 var diameter = 800;
 
