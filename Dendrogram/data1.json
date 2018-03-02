@@ -1,0 +1,82 @@
+{
+ "name": "subject",
+ "children": [
+  {
+   "name": "math",
+   "children": [
+    {
+     "name": "applied mathemathics",
+     "children": [
+      {"name": "am_1", "size": 3938},
+      {"name": "am_2", "size": 3812},
+      {"name": "am_3", "size": 6714},
+      {"name": "am_4", "size": 743}
+     ]
+    },
+    {
+     "name": "pure mathematics"
+    },
+    {
+     "name": "statistics"
+    }
+   ]
+  },
+  {
+   "name": "biology",
+   "children": [
+    {
+     "name": "bio-informatics",
+     "children": [
+      {"name": "bio_1", "size": 1983},
+      {"name": "bio_2", "size": 2047},
+      {"name": "bio_3", "size": 1375}
+     ]
+    },
+    {"name": "genome", "size": 1041},
+    {"name": "bio-locomotion", "size": 5176}
+   ]
+  },
+  {
+   "name": "chemistry"
+  },
+  {
+   "name": "english",
+   "children": [
+    {"name": "e_1", "size": 8833},
+    {"name": "e_2", "size": 1732},
+    {"name": "e_3", "size": 3623},
+    {"name": "e_4", "size": 10066}
+   ]
+  },
+  {
+   "name": "computer science",
+   "children": [
+    {"name": "cs_1", "size": 4116}
+   ]
+  },
+  {
+   "name": "physics",
+   "children": [
+    {"name": "p_1", "size": 1082},
+    {"name": "p_2", "size": 1336}
+   ]
+  },
+  {
+   "name": "history",
+   "children": [
+    {"name": "h_1", "size": 1616},
+    {"name": "h_2", "size": 1027},
+    {"name": "h_3", "size": 843},
+    {
+     "name": "methods",
+     "children": [
+      {"name": "m_1", "size": 593},
+      {"name": "m_2", "size": 330},
+      {"name": "m_3", "size": 287},
+      {"name": "m_4", "size": 264}
+     ]
+    }
+   ]
+  }
+ ]
+}

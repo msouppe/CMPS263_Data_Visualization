@@ -7,10 +7,10 @@
     {
      "name": "applied mathemathics",
      "children": [
-      {"name": "am_1", "size": 3938},
-      {"name": "am_2", "size": 3812},
-      {"name": "am_3", "size": 6714},
-      {"name": "am_4", "size": 743}
+      {"name": "am_1"},
+      {"name": "am_2"},
+      {"name": "am_3"},
+      {"name": "am_4"}
      ]
     },
     {
@@ -27,13 +27,13 @@
     {
      "name": "bio-informatics",
      "children": [
-      {"name": "bio_1", "size": 1983},
-      {"name": "bio_2", "size": 2047},
-      {"name": "bio_3", "size": 1375}
+      {"name": "bio_1"},
+      {"name": "bio_2"},
+      {"name": "bio_3"}
      ]
     },
-    {"name": "genome", "size": 1041},
-    {"name": "bio-locomotion", "size": 5176}
+    {"name": "genome"},
+    {"name": "bio-locomotion"}
    ]
   },
   {
@@ -42,38 +42,38 @@
   {
    "name": "english",
    "children": [
-    {"name": "e_1", "size": 8833},
-    {"name": "e_2", "size": 1732},
-    {"name": "e_3", "size": 3623},
-    {"name": "e_4", "size": 10066}
+    {"name": "e_1"},
+    {"name": "e_2"},
+    {"name": "e_3"},
+    {"name": "e_4"}
    ]
   },
   {
    "name": "computer science",
    "children": [
-    {"name": "cs_1", "size": 4116}
+    {"name": "cs_1"}
    ]
   },
   {
    "name": "physics",
    "children": [
-    {"name": "p_1", "size": 1082},
-    {"name": "p_2", "size": 1336}
+    {"name": "p_1"},
+    {"name": "p_2"}
    ]
   },
   {
    "name": "history",
    "children": [
-    {"name": "h_1", "size": 1616},
-    {"name": "h_2", "size": 1027},
-    {"name": "h_3", "size": 843},
+    {"name": "h_1"},
+    {"name": "h_2"},
+    {"name": "h_3"},
     {
      "name": "methods",
      "children": [
-      {"name": "m_1", "size": 593},
-      {"name": "m_2", "size": 330},
-      {"name": "m_3", "size": 287},
-      {"name": "m_4", "size": 264}
+      {"name": "m_1"},
+      {"name": "m_2"},
+      {"name": "m_3"},
+      {"name": "m_4"}
      ]
     }
    ]
