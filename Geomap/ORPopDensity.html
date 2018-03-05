@@ -5,38 +5,59 @@
     <head>
         <!-- Meta Tag -->
         <meta charset="utf-8">
-        <title>D3 Dendrogram</title>
-        <!-- CSS Stylesheet -->
-        <link rel="stylesheet" type="text/css" href="index.css">
+        <title>OR Pop Den 2014</title>
+
         <!-- D3.js Source -->
-        <script type= "text/javascript" src="http://d3js.org/d3.v4.min.js"></script>       
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script type= "text/javascript" src="http://d3js.org/d3.v4.min.js"></script> 
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src="https://d3js.org/topojson.v2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
         
  
     </head>
     <body>
-        <h1 style = "text-align:center; color:steelblue"><bold>Oregon Population Density XXXX</bold></h1>
+        <h1 style = "text-align:center"><bold>Oregon Population Density 2014</bold></h1>
+
+        <button id="state">State Boundary</button>
+        <button id="state_b">State Boundary w/ border</button><br/><br/>
+        <button id="census">Census Tract Boundary</button>
+        <button id="census_b">Census Tract Boundary w/ border</button>
+        <div id="map" width="800" height="1800"></div>
+        
+        <br/>    
     
         <!-- Your D3.js code for making a Horizontal Dendrogram -->
+<!--        <img src="or-albers.svg" width="960" style="margin-left:150px; margin-top: -100px;">-->
+<!--        <svg height="70" width="960" style="margin-top: -100px"></svg>-->
         <script type="text/javascript" src="index.js"></script>
 
         <!-- Submission Info -->
         <h4>Created by Mariette Souppe</h4>
+        
+        <a href="">GitHub Repo</a><br/><br/>
 
-        <h4>Files Submitted:</h4>
-
-        <ul style="list-style-type: none;">
-            <li><a href="">ORPopDensity.html</a></li>
-            <li><a href="">index.js</a></li>
-            <li><a href="">index.css</a></li>
-            <li><a href="">OR.json</a></li>
-        </ul>
+        Instructor - Suresh Lodha <br/>
+        CMPS 263 Data programming for Visualization <br/>
+        Winter 2018 <br/>
 
         <h4> Sources: </h4>
 
         <ul style="list-style-type: none;">
-            <li><a href="https://bl.ocks.org/mbostock/4339083"></a></li>
-            <li><a href="https://bl.ocks.org/mbostock/4739610f6d96aaad2fb1e78a72b385ab"></a></li>
+            <li><a href="https://medium.com/@mbostock/command-line-cartography-part-1-897aa8f8ca2c">Command-Line Cartography</a></li>
+            <li><a href="https://bl.ocks.org/mbostock/5562380">Legend</a></li>
+            <li><a href="https://stackoverflow.com/questions/21611178/making-a-multilayer-map-with-d3"></a></li>
+            <li><a href="https://plot.ly/javascript/custom-buttons/">Button Events</a></li>
+            <li><a href="http://bl.ocks.org/mapsam/6090056">D3: Queue.js</a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
             <li><a href=""></a></li>
         </ul>
 
