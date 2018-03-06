@@ -8,58 +8,85 @@ var svg = d3.select("#map").append('svg').attr("width", width).attr("height", he
 
 var path = d3.geoPath();
 
+/* For toggling colors on map */
+var counter = 0, tract_counter = 0;
 var color = d3.scaleThreshold()
     .domain([1, 10, 50, 200, 500, 1000, 2000, 4000])
     .range(d3.schemeOrRd[9]);
 
-var x = d3.scaleSqrt()
-    .domain([0, 4500])
-    .rangeRound([440, 950]);
+/* Showing map when first loading page */
+init();
 
-/* Legend */
-var g = svg.append("g")
-    .attr("class", "key")
-    .attr("transform", "translate(-425,40)");
+var state_border_on=false, state_border_off=false, tract_on=false, tract_off=false; 
 
-g.selectAll("rect")
-  .data(color.range().map(function(d) {
-      d = color.invertExtent(d);
-      if (d[0] == null) d[0] = x.domain()[0];
-      if (d[1] == null) d[1] = x.domain()[1];
-      return d;
-    }))
-  .enter().append("rect")
-    .attr("height", 8)
-    .attr("x", function(d) { return x(d[0]); })
-    .attr("width", function(d) { return x(d[1]) - x(d[0]); })
-    .attr("fill", function(d) { return color(d[0]); });
+d3.select("#color_t").on("click", color_toggle);
+d3.select("#tract").on("click", tract_toggle);
 
-g.append("text")
-    .attr("class", "caption")
-    .attr("x", x.range()[0])
-    .attr("y", -6)
-    .attr("fill", "#000")
-    .attr("text-anchor", "start")
-    .attr("font-weight", "bold")
-    .text("Population per square mile");
+function init() {
+    legend();
+    click_tract_off();
+}
 
-g.call(d3.axisBottom(x)
-    .tickSize(13)
-    .tickValues(color.domain()))
-  .select(".domain")
-    .remove();
+function color_toggle() {
+    console.log(counter);
+    svg.selectAll("g").remove();
+    if (counter%2 == 0) {
+        color.range(d3.schemePuBu[9]);
+        tract_counter -= 1;
+        tract_toggle();
+    } else {
+        color.range(d3.schemeOrRd[9]);
+        tract_counter -= 1;
+        tract_toggle();
+    }
+    counter += 1;
+    return color;
+}
 
+function legend() {
+    console.log("legend");
+    var x = d3.scaleSqrt()
+        .domain([0, 4500])
+        .rangeRound([440, 950]);
 
-d3.select("#state").on("click", click_state);
+    var g = svg.append("g")
+        .attr("class", "key")
+        .attr("transform", "translate(-425,40)");
 
-d3.select("#state_b").on("click", click_state_border);
+    g.selectAll("rect")
+      .data(color.range().map(function(d) {
+          d = color.invertExtent(d);
+          if (d[0] == null) d[0] = x.domain()[0];
+          if (d[1] == null) d[1] = x.domain()[1];
+          return d;
+        }))
+      .enter().append("rect")
+        .attr("height", 8)
+        .attr("x", function(d) { return x(d[0]); })
+        .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+        .attr("fill", function(d) { return color(d[0]); });
 
-d3.select("#census").on("click", click_census);
+    g.append("text")
+        .attr("class", "caption")
+        .attr("x", x.range()[0])
+        .attr("y", -6)
+        .attr("fill", "#000")
+        .attr("text-anchor", "start")
+        .attr("font-weight", "bold")
+        .text("Population per square mile");
 
-d3.select("#census_b").on("click", click_census_border);
+    g.call(d3.axisBottom(x)
+        .tickSize(13)
+        .tickValues(color.domain()))
+      .select(".domain")
+        .remove();
+}
 
 function click_state(){
     console.log("click_state");
+    svg.selectAll("g").remove();
+    legend();
+    
     d3.json("or-merge-topo.json", function(error, topology) {
         if (error) throw error;
 
@@ -75,14 +102,16 @@ function click_state(){
           .datum(topojson.feature(topology, topology))
           .attr("fill", "none")
 //          .attr("stroke", "#000")
-          .attr("stroke-opacity", 1)
+          .attr("stroke-opacity", 0.4)
           .attr("d", path);
     });
 }
 
 function click_state_border(){
-    console.log("click_state");
-    svg.attr("fill", "white");
+    console.log("click_state_border");
+    svg.selectAll("g").remove();
+    legend();
+
     d3.json("or-merge-topo.json", function(error, topology) {
         if (error) throw error;
 
@@ -98,14 +127,18 @@ function click_state_border(){
           .datum(topojson.feature(topology, topology.objects.counties))
           .attr("fill", "none")
           .attr("stroke", "#000")
-          .attr("stroke-opacity", 1)
+          .attr("stroke-opacity", 0.4)
           .attr("d", path);
     });
 }
 
-function click_census(){
-    console.log("click_census");
-    svg.attr("fill", "white");
+/* Census Tract With Out Tract */
+function click_tract_off(){
+    tract_counter += 1;
+    console.log("click_tract_off");
+    svg.selectAll("g").remove();
+    legend();
+    
     d3.json("or-topo.json", function(error, topology) {
         if (error) throw error;
 
@@ -115,7 +148,7 @@ function click_census(){
         .data(topojson.feature(topology, topology.objects.tracts).features)
         .enter().append("path")
           .attr("stroke", "none")
-          .attr("stroke-width", "1")
+//          .attr("stroke-width", ".5")
           .attr("fill", function(d) { return color(d.properties.density); })
           .attr("d", path);
 
@@ -128,9 +161,13 @@ function click_census(){
     });
 }
 
-function click_census_border(){
-    console.log("click_census");
-    svg.attr("fill", "white");
+/* Census Tract With Tract */
+function click_tract_on(){
+    tract_counter += 1;
+    console.log("click_tract_on");
+    svg.selectAll("g").remove();
+    legend();
+    
     d3.json("or-topo.json", function(error, topology) {
         if (error) throw error;
 
@@ -140,7 +177,7 @@ function click_census_border(){
         .data(topojson.feature(topology, topology.objects.tracts).features)
         .enter().append("path")
           .attr("stroke", "black")
-          .attr("stroke-opacity", 0.5)
+          .attr("stroke-opacity", 1)
           .attr("fill", function(d) { return color(d.properties.density); })
           .attr("d", path);
 
@@ -149,8 +186,17 @@ function click_census_border(){
           .datum(topojson.feature(topology, topology.objects.counties))
           .attr("fill", "none")
           .attr("stroke", "black") 
-          .attr("stroke-opacity", 0.3)
+          .attr("stroke-opacity", 0.9)
           .attr("d", path);
     });
+}
+
+function tract_toggle() {
+    console.log("tract_toggle");
+    if (tract_counter%2 == 0) {
+        click_tract_off();
+    } else {
+        click_tract_on();
+    }
 }
 
