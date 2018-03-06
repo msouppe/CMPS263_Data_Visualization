@@ -4,7 +4,8 @@ var margin = {top: 20, right: 300, bottom: 20, left: 120},
     height = 900 - margin.top - margin.bottom,
     padding_left = 200;
 
-var svg = d3.select("#map").append('svg').attr("width", width).attr("height", height);
+/* Draw map and legend to this id on the html page */
+var svg = d3.selectAll("#map").append('svg').attr("width", width).attr("height", height);
 
 var path = d3.geoPath();
 
@@ -17,24 +18,27 @@ var color = d3.scaleThreshold()
 /* Showing map when first loading page */
 init();
 
-var state_border_on=false, state_border_off=false, tract_on=false, tract_off=false; 
-
+/* On click events for the color and tracts */
 d3.select("#color_t").on("click", color_toggle);
 d3.select("#tract").on("click", tract_toggle);
 
+/* Function init for showing legend and map when loading page */
 function init() {
     legend();
     click_tract_off();
 }
 
+/* Function to toggle between the different colors for the scale */
 function color_toggle() {
     console.log(counter);
     svg.selectAll("g").remove();
     if (counter%2 == 0) {
+        /* Color scheme from light blue to dark blue */
         color.range(d3.schemePuBu[9]);
         tract_counter -= 1;
         tract_toggle();
     } else {
+        /* Color scheme from light yellow to dark red */
         color.range(d3.schemeOrRd[9]);
         tract_counter -= 1;
         tract_toggle();
@@ -43,6 +47,7 @@ function color_toggle() {
     return color;
 }
 
+/* Function to create the legend */
 function legend() {
     console.log("legend");
     var x = d3.scaleSqrt()
@@ -82,6 +87,7 @@ function legend() {
         .remove();
 }
 
+/* Function for when state border is not showing */
 function click_state(){
     console.log("click_state");
     svg.selectAll("g").remove();
@@ -107,6 +113,7 @@ function click_state(){
     });
 }
 
+/* Function for when state border is showing */
 function click_state_border(){
     console.log("click_state_border");
     svg.selectAll("g").remove();
@@ -132,7 +139,7 @@ function click_state_border(){
     });
 }
 
-/* Census Tract With Out Tract */
+/* Function for when tract is not showing */
 function click_tract_off(){
     tract_counter += 1;
     console.log("click_tract_off");
@@ -161,7 +168,7 @@ function click_tract_off(){
     });
 }
 
-/* Census Tract With Tract */
+/* Function for when tract is showing */
 function click_tract_on(){
     tract_counter += 1;
     console.log("click_tract_on");
@@ -191,6 +198,7 @@ function click_tract_on(){
     });
 }
 
+/* Function to toggle whether the tracts are showing or not */
 function tract_toggle() {
     console.log("tract_toggle");
     if (tract_counter%2 == 0) {
